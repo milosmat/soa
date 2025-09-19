@@ -1,8 +1,8 @@
 # SOA implementirano:
 
-## 📌 Implementirane funkcionalnosti
+##  Implementirane funkcionalnosti
 
-### ✅ 1. Kontrolna tačka (KT1)
+###  1. Kontrolna tačka (KT1)
 
 - Neregistrovani korisnik može da se registruje i odabere ulogu:
   - **Turista**
@@ -17,7 +17,7 @@
 
 ---
 
-### ✅ Docker (4 poena)
+###  Docker
 
 - Napisan je **Dockerfile** za svaki servis (Stakeholders, Tours, Purchase).
 - Napisan je **docker-compose.yml** koji podiže sve servise zajedno sa MongoDB bazom.
@@ -25,7 +25,7 @@
 
 ---
 
-### ✅ 2. Kontrolna tačka (KT2)
+###  2. Kontrolna tačka (KT2)
 
 - Autor može da kreira **draft turu**:
   - naziv, opis, težina, tagovi
@@ -45,7 +45,7 @@
 
 ---
 
-### ✅ 3. Kontrolna tačka (KT3)
+###  3. Kontrolna tačka (KT3)
 
 - Turista može da kupi objavljene ture:
   - dodavanje ture u **korpu (ShoppingCart)**
@@ -67,7 +67,7 @@
 
 ---
 
-### ✅ SAGA obrazac (1 poen)
+###  SAGA obrazac 
 
 Implementiran je **SAGA obrazac** preko orkestracije između dva mikroservisa:
 
@@ -85,7 +85,7 @@ Ovo obezbeđuje **atomicnost** procesa kupovine i otporan je na delimične greš
 
 ---
 
-## 📌 Frontend
+##  Frontend
 
 - Napisan u **Angular-u**.
 - Omogućava:
@@ -99,7 +99,7 @@ Ovo obezbeđuje **atomicnost** procesa kupovine i otporan je na delimične greš
 
 ---
 
-## 🚀 Pokretanje
+##  Pokretanje
 
 ### Preko Dockera:
 
