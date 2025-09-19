@@ -17,7 +17,7 @@
 
 ---
 
-### ✅ Docker (4 poena)
+### ✅ Docker
 
 - Napisan je **Dockerfile** za svaki servis (Stakeholders, Tours, Purchase).
 - Napisan je **docker-compose.yml** koji podiže sve servise zajedno sa MongoDB bazom.
@@ -67,7 +67,7 @@
 
 ---
 
-### ✅ SAGA obrazac (1 poen)
+### ✅ SAGA obrazac 
 
 Implementiran je **SAGA obrazac** preko orkestracije između dva mikroservisa:
 
