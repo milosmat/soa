@@ -1,0 +1,24 @@
+{
+  "Version": 1,
+  "Hash": "M4IG0B6yQ/GQU72KBr+ndfTdrVwidwTGiif4CwVbIik=",
+  "Source": "PurchaseApi",
+  "BasePath": "_content/PurchaseApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "D:\\faks\\soa\\StakeholdersApi\\ToursApi\\ToursApi.csproj",
+      "Version": 2,
+      "Source": "ToursApi",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

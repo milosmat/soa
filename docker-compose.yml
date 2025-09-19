@@ -1,0 +1,45 @@
+services:
+  mongo:
+    image: mongo:6
+    ports: ["27017:27017"]
+    volumes: ["mongo-data:/data/db"]
+
+  stakeholders:
+    build: ./StakeholdersApi
+    environment:
+      - MONGO__CONNECTIONSTRING=mongodb://mongo:27017
+      - MONGO__DATABASE=soa_stakeholders
+      - JWT__SECRET=this_is_a_dev_secret_with_32+_chars!!
+      - PORT=8080
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on: [mongo]
+    ports: ["8080:8080"]
+
+  tour:
+    build: ./ToursApi
+    environment:
+      - MONGO__CONNECTIONSTRING=mongodb://mongo:27017
+      - MONGO__DATABASE=soa_tour
+      - JWT__SECRET=this_is_a_dev_secret_with_32+_chars!!
+      - PORT=8090
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on: [mongo]
+    ports: ["8090:8090"]
+
+  purchase:
+    build: ./PurchaseApi
+    environment:
+      - MONGO__CONNECTIONSTRING=mongodb://mongo:27017
+      - MONGO__DATABASE=soa_purchase
+      - JWT__SECRET=this_is_a_dev_secret_with_32+_chars!!
+      - PORT=8091
+      - ASPNETCORE_ENVIRONMENT=Development
+      - TOURS_API=http://tour:8090   # 👈 ovo dodaj
+    depends_on:
+      - mongo
+      - tour
+    ports:
+      - "8091:8091"
+
+volumes:
+  mongo-data:

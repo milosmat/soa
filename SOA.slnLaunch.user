@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "StakeholdersApi\\StakeholdersApi.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "ToursApi\\ToursApi.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "PurchaseApi\\PurchaseApi.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

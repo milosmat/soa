@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "LzqYO3QIJuT4qgGS/XN6S2ouYE0T7f9rHRwBMbL8Iqc=",
+  "Source": "StakeholdersApi",
+  "BasePath": "_content/StakeholdersApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
