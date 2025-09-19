@@ -1,11 +1,20 @@
+version: "3.8"
 services:
   mongo:
     image: mongo:6
     ports: ["27017:27017"]
     volumes: ["mongo-data:/data/db"]
+    restart: unless-stopped
+
+  nats:
+    image: nats:2.10
+    command: ["-js", "-m", "8222"]
+    ports: ["4222:4222", "8222:8222"]
+    restart: unless-stopped
 
   stakeholders:
-    build: ./StakeholdersApi
+    build:
+      context: ./StakeholdersApi
     environment:
       - MONGO__CONNECTIONSTRING=mongodb://mongo:27017
       - MONGO__DATABASE=soa_stakeholders
@@ -14,32 +23,45 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on: [mongo]
     ports: ["8080:8080"]
+    restart: unless-stopped
 
   tour:
-    build: ./ToursApi
+    build:
+      context: .                # ⬅️ root
+      dockerfile: ./ToursApi/Dockerfile
     environment:
       - MONGO__CONNECTIONSTRING=mongodb://mongo:27017
       - MONGO__DATABASE=soa_tour
       - JWT__SECRET=this_is_a_dev_secret_with_32+_chars!!
       - PORT=8090
       - ASPNETCORE_ENVIRONMENT=Development
-    depends_on: [mongo]
+      - NATS__HOST=nats
+      - NATS__PORT=4222
+      - RESERVATION_COMMAND_SUBJECT=tour.reservation.command
+      - RESERVATION_REPLY_SUBJECT=tour.reservation.reply
+    depends_on: [mongo, nats]
     ports: ["8090:8090"]
+    restart: unless-stopped
 
   purchase:
-    build: ./PurchaseApi
+    build:
+      context: .                # ⬅️ root
+      dockerfile: ./PurchaseApi/Dockerfile
     environment:
       - MONGO__CONNECTIONSTRING=mongodb://mongo:27017
       - MONGO__DATABASE=soa_purchase
       - JWT__SECRET=this_is_a_dev_secret_with_32+_chars!!
       - PORT=8091
       - ASPNETCORE_ENVIRONMENT=Development
-      - TOURS_API=http://tour:8090   # 👈 ovo dodaj
-    depends_on:
-      - mongo
-      - tour
-    ports:
-      - "8091:8091"
+      - NATS__HOST=nats
+      - NATS__PORT=4222
+      - CREATE_PURCHASE_COMMAND_SUBJECT=purchase.create.command
+      - CREATE_PURCHASE_REPLY_SUBJECT=purchase.create.reply
+      - RESERVATION_COMMAND_SUBJECT=tour.reservation.command
+      - RESERVATION_REPLY_SUBJECT=tour.reservation.reply
+    depends_on: [mongo, nats, tour]
+    ports: ["8091:8091"]
+    restart: unless-stopped
 
 volumes:
   mongo-data:

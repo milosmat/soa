@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToursApi", "ToursApi\ToursA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurchaseApi", "PurchaseApi\PurchaseApi.csproj", "{0263D64A-3BEE-4659-BCDC-AD6F72CAD8FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{FC5C16DE-200D-45D5-A893-97A8BF00131D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0263D64A-3BEE-4659-BCDC-AD6F72CAD8FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0263D64A-3BEE-4659-BCDC-AD6F72CAD8FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0263D64A-3BEE-4659-BCDC-AD6F72CAD8FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC5C16DE-200D-45D5-A893-97A8BF00131D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC5C16DE-200D-45D5-A893-97A8BF00131D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC5C16DE-200D-45D5-A893-97A8BF00131D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC5C16DE-200D-45D5-A893-97A8BF00131D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

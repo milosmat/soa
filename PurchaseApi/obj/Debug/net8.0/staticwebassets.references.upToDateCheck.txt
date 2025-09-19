@@ -1,2 +1,3 @@
 D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\staticwebassets.build.json
 D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\staticwebassets.build.json
+D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\staticwebassets.build.json

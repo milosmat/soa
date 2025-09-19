@@ -49,3 +49,4 @@ D:\faks\soa\StakeholdersApi\StakeholdersApi\obj\Debug\net8.0\StakeholdersApi.pdb
 D:\faks\soa\StakeholdersApi\StakeholdersApi\obj\Debug\net8.0\StakeholdersApi.genruntimeconfig.cache
 D:\faks\soa\StakeholdersApi\StakeholdersApi\obj\Debug\net8.0\ref\StakeholdersApi.dll
 D:\faks\soa\StakeholdersApi\StakeholdersApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\faks\soa\StakeholdersApi\StakeholdersApi\obj\Debug\net8.0\StakeholdersApi.sourcelink.json

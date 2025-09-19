@@ -1,16 +1,20 @@
-# Build
+# ---- build ----
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY *.csproj ./
-RUN dotnet restore
-COPY . .
-RUN dotnet publish -c Release -o /app/publish
 
-# Run
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+# samo csproj za brži restore
+COPY ./ToursApi/ToursApi.csproj ./ToursApi/
+COPY ./Contracts/Contracts.csproj ./Contracts/
+RUN dotnet restore ./ToursApi/ToursApi.csproj
+
+# sad ceo kod
+COPY ./ToursApi ./ToursApi
+COPY ./Contracts ./Contracts
+
+RUN dotnet publish ./ToursApi/ToursApi.csproj -c Release -o /app/publish
+
+# ---- runtime ----
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
-ENV ASPNETCORE_URLS=http://+:8090
-ENV PORT=8090
-EXPOSE 8090
-ENTRYPOINT ["dotnet", "ToursApi.dll"]
+ENTRYPOINT ["dotnet","ToursApi.dll"]

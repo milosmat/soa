@@ -1,3 +1,11 @@
+D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.csproj.AssemblyReference.cache
+D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.GeneratedMSBuildEditorConfig.editorconfig
+D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.AssemblyInfoInputs.cache
+D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.AssemblyInfo.cs
+D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.csproj.CoreCompileInputs.cache
+D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.MvcApplicationPartsAssemblyInfo.cs
+D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.MvcApplicationPartsAssemblyInfo.cache
+D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.sourcelink.json
 D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\appsettings.Development.json
 D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\appsettings.json
 D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\ToursApi.staticwebassets.endpoints.json
@@ -17,6 +25,7 @@ D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\Microsoft.IdentityModel.To
 D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\Microsoft.OpenApi.dll
 D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\MongoDB.Bson.dll
 D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\MongoDB.Driver.dll
+D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\NATS.Client.Core.dll
 D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\SharpCompress.dll
 D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\Snappier.dll
 D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
@@ -24,13 +33,8 @@ D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swa
 D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\ZstdSharp.dll
-D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.csproj.AssemblyReference.cache
-D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.GeneratedMSBuildEditorConfig.editorconfig
-D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.AssemblyInfoInputs.cache
-D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.AssemblyInfo.cs
-D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.csproj.CoreCompileInputs.cache
-D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.MvcApplicationPartsAssemblyInfo.cs
-D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\ToursApi.MvcApplicationPartsAssemblyInfo.cache
+D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\Contracts.dll
+D:\faks\soa\StakeholdersApi\ToursApi\bin\Debug\net8.0\Contracts.pdb
 D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\scopedcss\bundle\ToursApi.styles.css
 D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\staticwebassets.build.json
 D:\faks\soa\StakeholdersApi\ToursApi\obj\Debug\net8.0\staticwebassets.development.json

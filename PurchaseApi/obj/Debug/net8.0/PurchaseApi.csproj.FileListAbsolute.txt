@@ -1,3 +1,10 @@
+D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\PurchaseApi.csproj.AssemblyReference.cache
+D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\PurchaseApi.GeneratedMSBuildEditorConfig.editorconfig
+D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\PurchaseApi.AssemblyInfoInputs.cache
+D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\PurchaseApi.AssemblyInfo.cs
+D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\PurchaseApi.csproj.CoreCompileInputs.cache
+D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\PurchaseApi.MvcApplicationPartsAssemblyInfo.cache
+D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\PurchaseApi.sourcelink.json
 D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\ToursApi.deps.json
 D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\ToursApi.runtimeconfig.json
 D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\ToursApi.staticwebassets.endpoints.json
@@ -21,6 +28,7 @@ D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\Microsoft.IdentityModel
 D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\Microsoft.OpenApi.dll
 D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\MongoDB.Bson.dll
 D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\MongoDB.Driver.dll
+D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\NATS.Client.Core.dll
 D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\SharpCompress.dll
 D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\Snappier.dll
 D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
@@ -28,15 +36,11 @@ D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.
 D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\ZstdSharp.dll
+D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\Contracts.dll
 D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\ToursApi.dll
+D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\Contracts.pdb
 D:\faks\soa\StakeholdersApi\PurchaseApi\bin\Debug\net8.0\ToursApi.pdb
-D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\PurchaseApi.csproj.AssemblyReference.cache
-D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\PurchaseApi.GeneratedMSBuildEditorConfig.editorconfig
-D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\PurchaseApi.AssemblyInfoInputs.cache
-D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\PurchaseApi.AssemblyInfo.cs
-D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\PurchaseApi.csproj.CoreCompileInputs.cache
 D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\PurchaseApi.MvcApplicationPartsAssemblyInfo.cs
-D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\PurchaseApi.MvcApplicationPartsAssemblyInfo.cache
 D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\scopedcss\bundle\PurchaseApi.styles.css
 D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\staticwebassets.build.json
 D:\faks\soa\StakeholdersApi\PurchaseApi\obj\Debug\net8.0\staticwebassets.development.json
