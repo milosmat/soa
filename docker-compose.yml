@@ -1,10 +1,22 @@
 version: "3.8"
 services:
-  mongo:
+  mongo_stakeholders:
     image: mongo:6
-    ports: ["27017:27017"]
-    volumes: ["mongo-data:/data/db"]
+    volumes: ["mongo-stakeholders:/data/db"]
     restart: unless-stopped
+    ports: ["27018:27017"]
+
+  mongo_tour:
+    image: mongo:6
+    volumes: ["mongo-tour:/data/db"]
+    restart: unless-stopped
+    ports: ["27019:27017"]
+
+  mongo_purchase:
+    image: mongo:6
+    volumes: ["mongo-purchase:/data/db"]
+    restart: unless-stopped
+    ports: ["27020:27017"]
 
   nats:
     image: nats:2.10
@@ -16,21 +28,21 @@ services:
     build:
       context: ./StakeholdersApi
     environment:
-      - MONGO__CONNECTIONSTRING=mongodb://mongo:27017
+      - MONGO__CONNECTIONSTRING=mongodb://mongo_stakeholders:27017
       - MONGO__DATABASE=soa_stakeholders
       - JWT__SECRET=this_is_a_dev_secret_with_32+_chars!!
       - PORT=8080
       - ASPNETCORE_ENVIRONMENT=Development
-    depends_on: [mongo]
+    depends_on: [mongo_stakeholders]
     ports: ["8080:8080"]
     restart: unless-stopped
 
   tour:
     build:
-      context: .                # ⬅️ root
+      context: .
       dockerfile: ./ToursApi/Dockerfile
     environment:
-      - MONGO__CONNECTIONSTRING=mongodb://mongo:27017
+      - MONGO__CONNECTIONSTRING=mongodb://mongo_tour:27017
       - MONGO__DATABASE=soa_tour
       - JWT__SECRET=this_is_a_dev_secret_with_32+_chars!!
       - PORT=8090
@@ -39,16 +51,16 @@ services:
       - NATS__PORT=4222
       - RESERVATION_COMMAND_SUBJECT=tour.reservation.command
       - RESERVATION_REPLY_SUBJECT=tour.reservation.reply
-    depends_on: [mongo, nats]
+    depends_on: [mongo_tour, nats]
     ports: ["8090:8090"]
     restart: unless-stopped
 
   purchase:
     build:
-      context: .                # ⬅️ root
+      context: .
       dockerfile: ./PurchaseApi/Dockerfile
     environment:
-      - MONGO__CONNECTIONSTRING=mongodb://mongo:27017
+      - MONGO__CONNECTIONSTRING=mongodb://mongo_purchase:27017
       - MONGO__DATABASE=soa_purchase
       - JWT__SECRET=this_is_a_dev_secret_with_32+_chars!!
       - PORT=8091
@@ -59,9 +71,55 @@ services:
       - CREATE_PURCHASE_REPLY_SUBJECT=purchase.create.reply
       - RESERVATION_COMMAND_SUBJECT=tour.reservation.command
       - RESERVATION_REPLY_SUBJECT=tour.reservation.reply
-    depends_on: [mongo, nats, tour]
+    depends_on: [mongo_purchase, nats, tour]
     ports: ["8091:8091"]
     restart: unless-stopped
 
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+    ports: ["9090:9090"]
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:11.1.4
+    depends_on: [prometheus]
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana-data:/var/lib/grafana
+    ports: ["3000:3000"]
+    restart: unless-stopped
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    ports: ["8082:8080"]
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    restart: unless-stopped
+
+  node-exporter:
+    image: quay.io/prometheus/node-exporter:v1.8.2
+    command:
+      - '--path.rootfs=/host'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    volumes:
+      - '/:/host:ro'
+    restart: unless-stopped
+    
 volumes:
-  mongo-data:
+  mongo-stakeholders:
+  mongo-tour:
+  mongo-purchase:
+  prometheus-data:
+  grafana-data:

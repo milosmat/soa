@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using PurchaseApi.Store;
 using PurchaseApi.Store.Model;
 using PurchaseApi.Web.Dto;
-using PurchaseApi.Web.Auth; // isti UserId helper kao u drugim servisima
+using PurchaseApi.Web.Auth;
 
 namespace PurchaseApi.Web.Controllers
 {

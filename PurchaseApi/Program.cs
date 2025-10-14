@@ -13,18 +13,15 @@ using PurchaseApi.Saga;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ===== env =====
 var mongoConn = Environment.GetEnvironmentVariable("MONGO__CONNECTIONSTRING") ?? "mongodb://localhost:27017";
 var mongoDb = Environment.GetEnvironmentVariable("MONGO__DATABASE") ?? "soa_purchase";
 var jwtSecret = Environment.GetEnvironmentVariable("JWT__SECRET") ?? "devsecret-change-me";
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8091";
 
-// ===== Mongo =====
 builder.Services.AddSingleton<IMongoClient>(_ => new MongoClient(mongoConn));
 builder.Services.AddSingleton<IMongoDatabase>(sp => sp.GetRequiredService<IMongoClient>().GetDatabase(mongoDb));
 builder.Services.AddSingleton<AppDb>();
 
-// ===== Auth =====
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
   .AddJwtBearer(o => o.TokenValidationParameters = new TokenValidationParameters
   {
@@ -36,7 +33,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
   });
 builder.Services.AddAuthorization();
 
-// ===== Controllers & Swagger =====
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -57,7 +53,6 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddCors();
 
-// ===== NATS & Messaging (⬇️ OVO JE ONAJ BLOK) =====
 builder.Services.AddSingleton(sp =>
 {
     var host = Environment.GetEnvironmentVariable("NATS__HOST") ?? "localhost";
@@ -67,7 +62,6 @@ builder.Services.AddSingleton(sp =>
 builder.Services.AddSingleton<IPublisher, NatsPublisher>();
 builder.Services.AddSingleton<ISubscriber, NatsSubscriber>();
 
-// ===== SAGA pieces (orchestrator + purchase command handler) =====
 builder.Services.AddSingleton<CreatePurchaseOrchestrator>();
 builder.Services.AddSingleton<CreatePurchaseCommandHandler>();
 
@@ -86,7 +80,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// ⬇️ start NATS subscriptions
+// start NATS subscriptions
 _ = app.Services.GetRequiredService<CreatePurchaseOrchestrator>().StartAsync();
 _ = app.Services.GetRequiredService<CreatePurchaseCommandHandler>().StartAsync();
 

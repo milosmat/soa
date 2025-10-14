@@ -71,7 +71,7 @@ namespace ToursApi.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize] // ili [Authorize] ako samo ulogovani turisti smeju
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Tour>>> All()
         {
             var list = await _db.Tours
