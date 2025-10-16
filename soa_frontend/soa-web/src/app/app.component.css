@@ -1,0 +1,54 @@
+/* Glavni navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1976d2;
+  color: #fff;
+  padding: 12px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Linkovi levo */
+.nav-left a {
+  margin-right: 15px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-left a:hover {
+  text-decoration: underline;
+}
+
+/* Desna strana */
+.nav-right a {
+  margin-left: 15px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-right button {
+  margin-left: 15px;
+  background: #e53935;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nav-right button:hover {
+  background: #c62828;
+}
+
+/* Aktivni link */
+.active {
+  text-decoration: underline;
+}
+
+/* Glavni sadržaj */
+.content {
+  padding: 20px;
+}

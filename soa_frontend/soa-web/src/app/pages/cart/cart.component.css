@@ -1,0 +1,18 @@
+.cart-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+.cart-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.total {
+  margin-top: 12px;
+  font-size: 16px;
+}

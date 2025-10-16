@@ -1,0 +1,10 @@
+<div class="market-container">
+  <h2>Available Tours</h2>
+
+  <div *ngFor="let t of tours" class="tour-card">
+    <h3>{{t.title}}</h3>
+    <p>{{t.description}}</p>
+    <p><b>Difficulty:</b> {{t.difficulty}} | <b>Price:</b> {{t.price}} $</p>
+    <button (click)="addToCart(t)">Add to cart</button>
+  </div>
+</div>

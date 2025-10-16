@@ -1,0 +1,10 @@
+<div class="profile-container">
+  <h2>My Profile</h2>
+  <form [formGroup]="f" (ngSubmit)="save()" class="profile-form">
+    <input formControlName="firstName" placeholder="First name">
+    <input formControlName="lastName" placeholder="Last name">
+    <input formControlName="motto" placeholder="Motto">
+    <textarea formControlName="bio" placeholder="Bio"></textarea>
+    <button type="submit">Save</button>
+  </form>
+</div>

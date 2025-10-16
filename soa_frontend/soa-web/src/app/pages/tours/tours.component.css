@@ -1,0 +1,55 @@
+.tours-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.tour-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.tour-card:hover {
+  background: #f5f5f5;
+}
+
+.tour-card h3 {
+  margin: 0;
+}
+
+.status {
+  font-weight: bold;
+  color: #555;
+}
+
+.tour-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.tour-form input,
+.tour-form textarea,
+.tour-form select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.tour-form button {
+  background: #ff9800;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tour-form button:hover {
+  background: #e68900;
+}

@@ -1,0 +1,11 @@
+<div class="purchases-container">
+  <h2>My Purchased Tours</h2>
+
+  <div *ngFor="let t of purchases" class="tour-card" (click)="open(t)">
+    <h3>{{ t.title }}</h3>
+    <p>{{ t.description }}</p>
+    <p><b>Difficulty:</b> {{ t.difficulty }} | <b>Price:</b> {{ t.price }} $</p>
+    <p><b>Length:</b> {{ t.lengthKm }} km</p>
+    <p><b>Purchased at:</b> {{ t.purchasedAt | date:'short' }}</p>
+  </div>
+</div>

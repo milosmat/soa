@@ -1,0 +1,46 @@
+<div class="tour-detail-container">
+  <h2>Edit Tour</h2>
+
+  <form [formGroup]="f" (ngSubmit)="save()" class="edit-form">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input id="title" formControlName="title" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description" rows="3"></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="difficulty">Difficulty</label>
+        <select id="difficulty" formControlName="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price ($)</label>
+        <input id="price" type="number" formControlName="price" min="0" />
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select id="status" formControlName="status">
+          <option value="draft">Draft</option>
+          <option value="published">Published</option>
+          <option value="archived">Archived</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-save">💾 Save</button>
+  </form>
+
+  <h3>Key Points</h3>
+  <div id="map" class="map"></div>
+  <p class="info">Click on the map to add a key point.</p>
+</div>

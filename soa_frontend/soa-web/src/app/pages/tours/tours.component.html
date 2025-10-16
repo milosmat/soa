@@ -1,0 +1,23 @@
+<div class="tours-container">
+  <h2>My Tours</h2>
+
+  <div class="tour-card" *ngFor="let t of tours" (click)="open(t)">
+    <h3>{{t.title}}</h3>
+    <p>{{t.lengthKm}} km — <span class="status">{{t.status}}</span></p>
+  </div>
+
+  <h3>Create New Tour</h3>
+  <form [formGroup]="f" (ngSubmit)="create()" class="tour-form">
+    <input formControlName="title" placeholder="Title">
+    <textarea formControlName="description" placeholder="Description"></textarea>
+
+    <select formControlName="difficulty">
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+
+    <input formControlName="tags" placeholder="Tags (comma separated)">
+    <button type="submit">Create</button>
+  </form>
+</div>

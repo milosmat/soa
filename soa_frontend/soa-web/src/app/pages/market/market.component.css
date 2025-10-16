@@ -1,0 +1,31 @@
+.market-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+.tour-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 15px;
+  background: #fafafa;
+}
+
+.tour-card h3 {
+  margin-top: 0;
+}
+
+.tour-card button {
+  margin-top: 10px;
+  background: #388e3c;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tour-card button:hover {
+  background: #2e7030;
+}

@@ -1,0 +1,18 @@
+<div class="cart-container">
+  <h2>My Cart</h2>
+
+  <div *ngIf="cart && cart.items.length > 0; else emptyCart">
+    <div class="cart-item" *ngFor="let item of cart.items">
+      {{item.tourName}} — {{item.price}} $
+    </div>
+    <div class="total">
+      <b>Total: {{cart.totalPrice}} $</b>
+    </div>
+    <button (click)="checkout()" [disabled]="isProcessing">Checkout</button>
+    <span *ngIf="isProcessing">Obrada kupovine...</span>
+  </div>
+
+  <ng-template #emptyCart>
+    <p>Your cart is empty.</p>
+  </ng-template>
+</div>

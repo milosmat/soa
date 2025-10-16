@@ -1,0 +1,9 @@
+<div class="tour-detail-container" *ngIf="tour">
+  <h2>{{ tour.title }}</h2>
+  <p>{{ tour.description }}</p>
+  <p><b>Difficulty:</b> {{ tour.difficulty }} | <b>Price:</b> {{ tour.price }} $</p>
+  <p><b>Length:</b> {{ tour.lengthKm }} km</p>
+
+  <h3>Checkpoints</h3>
+  <div id="map" class="map"></div>
+</div>

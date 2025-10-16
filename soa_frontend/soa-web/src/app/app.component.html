@@ -1,0 +1,20 @@
+<nav class="navbar">
+  <div class="nav-left">
+    <a routerLink="/tours" routerLinkActive="active">Tours</a>
+    <a routerLink="/profile" routerLinkActive="active">Profile</a>
+    <a routerLink="/simulator" routerLinkActive="active">Simulator</a>
+    <a *ngIf="auth.isLoggedIn" routerLink="/market" routerLinkActive="active">Market</a>
+    <a *ngIf="auth.isLoggedIn" routerLink="/cart" routerLinkActive="active">Cart</a>
+    <a *ngIf="auth.isLoggedIn" routerLink="/purchases" routerLinkActive="active">Bought Tours</a>
+  </div>
+
+  <div class="nav-right">
+    <a *ngIf="!auth.isLoggedIn" routerLink="/login" routerLinkActive="active">Login</a>
+    <a *ngIf="!auth.isLoggedIn" routerLink="/register" routerLinkActive="active">Register</a>
+    <button *ngIf="auth.isLoggedIn" (click)="logout()">Logout</button>
+  </div>
+</nav>
+
+<main class="content">
+  <router-outlet></router-outlet>
+</main>
