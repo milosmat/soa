@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BlogService } from '../../services/blog.service';
-import { SecureImgDirective } from '../../directives/secure-img.directive';
 
 @Component({
   standalone: true,
   selector: 'app-blog-create',
   templateUrl: './blog-create.component.html',
   styleUrls: ['./blog-create.component.css'],
-  imports: [CommonModule, FormsModule, SecureImgDirective]
+  imports: [CommonModule, FormsModule]
 })
 export class BlogCreateComponent {
   title = '';

@@ -5,7 +5,6 @@ import { BlogService } from '../../services/blog.service';
 import { Blog, Comment } from '../../models/blog';
 import { FormsModule } from '@angular/forms';
 import { MarkdownPipe } from '../../pipes/markdown.pipe';
-import { SecureImgDirective } from '../../directives/secure-img.directive';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -13,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-blog-detail',
   templateUrl: './blog-detail.component.html',
   styleUrls: ['./blog-detail.component.css'],
-  imports: [CommonModule, FormsModule, DatePipe, MarkdownPipe, SecureImgDirective]
+  imports: [CommonModule, FormsModule, DatePipe, MarkdownPipe]
 })
 export class BlogDetailComponent implements OnInit {
   blog?: Blog;

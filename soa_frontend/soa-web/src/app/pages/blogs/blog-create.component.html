@@ -18,7 +18,7 @@
       </label>
       <ul>
         <li *ngFor="let img of images; let i = index">
-          <img [secureImgSrc]="img" alt="image" />
+          <img [src]="img" alt="image" />
           <span>{{ img }}</span>
           <button type="button" (click)="removeImage(i)">Remove</button>
         </li>

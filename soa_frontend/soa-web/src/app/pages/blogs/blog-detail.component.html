@@ -6,7 +6,7 @@
   </div>
 
   <div class="images" *ngIf="b.images?.length">
-    <img *ngFor="let img of b.images" [secureImgSrc]="img" alt="image" />
+    <img *ngFor="let img of b.images" [src]="img" alt="image" />
   </div>
 
   <div class="description" [innerHTML]="b.description | markdown"></div>
