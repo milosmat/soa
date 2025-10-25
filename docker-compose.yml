@@ -18,6 +18,12 @@ services:
     restart: unless-stopped
     ports: ["27020:27017"]
 
+  mongo_blog:
+    image: mongo:6
+    volumes: ["mongo-blog:/data/db"]
+    restart: unless-stopped
+    ports: ["27021:27017"]
+
   nats:
     image: nats:2.10
     command: ["-js", "-m", "8222"]
@@ -75,6 +81,24 @@ services:
     ports: ["8091:8091"]
     restart: unless-stopped
 
+  blog:
+    build:
+      context: ./BlogApi
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo_blog:27017/soa_blog
+      - SERVER_PORT=8092
+      - SPRING_PROFILES_ACTIVE=default
+      - JWT_SECRET=this_is_a_dev_secret_with_32+_chars!!
+      - UPLOAD_DIR=/app/uploads
+      - STAKEHOLDERS_BASE_URL=http://stakeholders:8080
+      - TOURS_BASE_URL=http://tour:8090
+      - PURCHASE_BASE_URL=http://purchase:8091
+    depends_on: [mongo_blog]
+    volumes:
+      - blog-uploads:/app/uploads
+    ports: ["8092:8092"]
+    restart: unless-stopped
+
   prometheus:
     image: prom/prometheus:v2.54.1
     volumes:
@@ -121,5 +145,7 @@ volumes:
   mongo-stakeholders:
   mongo-tour:
   mongo-purchase:
+  mongo-blog:
   prometheus-data:
   grafana-data:
+  blog-uploads:

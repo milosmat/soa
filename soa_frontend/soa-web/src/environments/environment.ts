@@ -3,4 +3,5 @@ export const environment = {
   stakeholdersApi: 'http://localhost:8080',
   toursApi: 'http://localhost:8090',
   purchaseApi: 'http://localhost:8091',
+  blogApi: 'http://localhost:8092',
 };

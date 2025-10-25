@@ -20,6 +20,9 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/purchased-tour-detail/purchased-tour-detail.component')
       .then(m => m.PurchasedTourDetailComponent),
     canActivate: [canActivate]
-  }
+  },
+  { path: 'blogs', loadComponent: () => import('./pages/blogs/blog-list.component').then(m => m.BlogListComponent) },
+  { path: 'blogs/create', loadComponent: () => import('./pages/blogs/blog-create.component').then(m => m.BlogCreateComponent), canActivate: [canActivate] },
+  { path: 'blogs/:id', loadComponent: () => import('./pages/blogs/blog-detail.component').then(m => m.BlogDetailComponent) }
 
 ];

@@ -1,0 +1,30 @@
+<section>
+  <h2>Create Blog</h2>
+  <form (ngSubmit)="create()">
+    <label>
+      Title
+      <input type="text" [(ngModel)]="title" name="title" required />
+    </label>
+
+    <label>
+      Description (Markdown supported)
+      <textarea rows="8" [(ngModel)]="description" name="description" required></textarea>
+    </label>
+
+    <div class="images">
+      <label>
+        Images
+        <input type="file" (change)="onFilesSelected($event)" multiple />
+      </label>
+      <ul>
+        <li *ngFor="let img of images; let i = index">
+          <img [secureImgSrc]="img" alt="image" />
+          <span>{{ img }}</span>
+          <button type="button" (click)="removeImage(i)">Remove</button>
+        </li>
+      </ul>
+    </div>
+
+    <button type="submit" [disabled]="saving">Create</button>
+  </form>
+</section>

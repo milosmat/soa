@@ -3,4 +3,5 @@ export const environment = {
   stakeholdersApi: '/stakeholders',
   toursApi: '/tours',
   purchaseApi: '/purchase',
+  blogApi: '/blog',
 };

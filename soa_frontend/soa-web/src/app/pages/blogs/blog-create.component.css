@@ -1,0 +1,5 @@
+form{display:flex;flex-direction:column;gap:.75rem;max-width:720px}
+input[type=text],input[type=url],textarea{width:100%}
+.images ul{list-style:none;padding:0;margin:.5rem 0;display:flex;flex-direction:column;gap:.5rem}
+.images li{display:flex;gap:.5rem;align-items:center}
+.images img{height:48px;width:48px;object-fit:cover;border-radius:6px;border:1px solid #ddd}

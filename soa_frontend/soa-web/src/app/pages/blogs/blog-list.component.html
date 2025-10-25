@@ -1,0 +1,17 @@
+<section>
+  <h2>Blogs</h2>
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="!loading && blogs.length===0">No blogs yet.</div>
+  <div class="grid">
+    <article class="card" *ngFor="let b of blogs">
+      <h3>{{ b.title }}</h3>
+      <div class="meta">
+        <span>{{ b.createdAt | date:'medium' }}</span>
+        <span>Likes: {{ likeCount(b) }}</span>
+        <span>Comments: {{ b.comments.length }}</span>
+      </div>
+      <p class="excerpt">{{ b.description }}</p>
+      <a [routerLink]="['/blogs', b.id]">View details</a>
+    </article>
+  </div>
+</section>

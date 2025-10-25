@@ -1,0 +1,46 @@
+<section *ngIf="blog as b">
+  <h2>{{ b.title }}</h2>
+  <div class="meta">
+    <span>{{ b.createdAt | date:'medium' }}</span>
+    <span>Likes: {{ b.likedBy.length }}</span>
+  </div>
+
+  <div class="images" *ngIf="b.images?.length">
+    <img *ngFor="let img of b.images" [secureImgSrc]="img" alt="image" />
+  </div>
+
+  <div class="description" [innerHTML]="b.description | markdown"></div>
+
+  <div class="actions" *ngIf="auth.isLoggedIn">
+    <button (click)="like()">Like</button>
+    <button (click)="unlike()">Unlike</button>
+  </div>
+
+  <h3>Comments ({{ b.comments.length }})</h3>
+  <div class="comments">
+    <div class="comment" *ngFor="let c of b.comments">
+      <div class="head">
+        <b>{{ c.authorName || c.authorId }}</b>
+        <span>{{ c.createdAt | date:'short' }}</span>
+        <span *ngIf="c.updatedAt && c.updatedAt !== c.createdAt">(edited {{ c.updatedAt | date:'short' }})</span>
+      </div>
+      <div class="body" *ngIf="editCommentId !== c.id">{{ c.text }}</div>
+      <div class="edit" *ngIf="editCommentId === c.id">
+        <textarea [(ngModel)]="editText" rows="3"></textarea>
+        <div class="edit-actions">
+          <button (click)="saveEdit()">Save</button>
+          <button (click)="cancelEdit()">Cancel</button>
+        </div>
+      </div>
+      <div class="row-actions" *ngIf="auth.isLoggedIn">
+        <button (click)="startEdit(c)" *ngIf="editCommentId !== c.id">Edit</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="add-comment" *ngIf="auth.isLoggedIn">
+    <h4>Add comment</h4>
+    <textarea [(ngModel)]="newComment" rows="3" placeholder="Your comment..."></textarea>
+    <button (click)="addComment()">Post</button>
+  </div>
+</section>
