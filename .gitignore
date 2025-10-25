@@ -1,2 +1,55 @@
 .vs/
 .idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE/editor
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.docstates
+*.code-workspace
+
+# Node / Angular (frontend)
+soa_frontend/soa-web/node_modules/
+soa_frontend/soa-web/dist/
+soa_frontend/soa-web/.angular/
+soa_frontend/soa-web/.env.local
+soa_frontend/soa-web/.env.development.local
+soa_frontend/soa-web/.env.test.local
+soa_frontend/soa-web/.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Java / Maven (BlogApi)
+BlogApi/target/
+BlogApi/.classpath
+BlogApi/.project
+BlogApi/.settings/
+# runtime uploads directory for BlogApi (do not commit user uploads)
+BlogApi/uploads/
+
+# .NET (C# projects)
+**/bin/
+**/obj/
+**/TestResults/
+*.user
+*.userosscache
+*.sln.docstates
+*.csproj.user
+
+# Logs
+*.log
+logs/
+
+# Docker
+*.pid
+
+# Misc
+coverage/
+**/.DS_Store
