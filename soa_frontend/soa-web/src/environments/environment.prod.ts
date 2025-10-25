@@ -1,7 +1,8 @@
 export const environment = {
   production: true,
-  stakeholdersApi: '/stakeholders',
-  toursApi: '/tours',
-  purchaseApi: '/purchase',
-  blogApi: '/blog',
+
+  stakeholdersApi: 'http://localhost:8088',
+  toursApi: 'http://localhost:8088',
+  purchaseApi: 'http://localhost:8088',
+  blogApi: 'http://localhost:8088',
 };

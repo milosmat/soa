@@ -1,5 +1,25 @@
 version: "3.8"
 services:
+  traefik:
+    image: traefik:2.10
+    command:
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --api.insecure=true
+    ports:
+      - "8088:80"    
+      - "8081:8080"  # Traefik dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.cors.headers.accesscontrolallowmethods=GET,POST,PUT,DELETE,PATCH,OPTIONS"
+      - "traefik.http.middlewares.cors.headers.accesscontrolallowheaders=*"
+      - "traefik.http.middlewares.cors.headers.accesscontrolalloworiginlist=http://localhost:4200"
+      - "traefik.http.middlewares.cors.headers.accesscontrolallowcredentials=true"
+      - "traefik.http.middlewares.cors.headers.addvaryheader=true"
+    restart: unless-stopped
   mongo_stakeholders:
     image: mongo:6
     volumes: ["mongo-stakeholders:/data/db"]
@@ -41,6 +61,12 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on: [mongo_stakeholders]
     ports: ["8080:8080"]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.stakeholders.rule=PathPrefix(`/auth`) || PathPrefix(`/me`)"
+      - "traefik.http.routers.stakeholders.entrypoints=web"
+      - "traefik.http.services.stakeholders.loadbalancer.server.port=8080"
+      - "traefik.http.routers.stakeholders.middlewares=cors@docker"
     restart: unless-stopped
 
   tour:
@@ -59,6 +85,12 @@ services:
       - RESERVATION_REPLY_SUBJECT=tour.reservation.reply
     depends_on: [mongo_tour, nats]
     ports: ["8090:8090"]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.tours.rule=PathPrefix(`/tours`) || PathPrefix(`/positions`)"
+      - "traefik.http.routers.tours.entrypoints=web"
+      - "traefik.http.services.tours.loadbalancer.server.port=8090"
+      - "traefik.http.routers.tours.middlewares=cors@docker"
     restart: unless-stopped
 
   purchase:
@@ -79,6 +111,12 @@ services:
       - RESERVATION_REPLY_SUBJECT=tour.reservation.reply
     depends_on: [mongo_purchase, nats, tour]
     ports: ["8091:8091"]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.purchase.rule=PathPrefix(`/cart`) || PathPrefix(`/purchases`)"
+      - "traefik.http.routers.purchase.entrypoints=web"
+      - "traefik.http.services.purchase.loadbalancer.server.port=8091"
+      - "traefik.http.routers.purchase.middlewares=cors@docker"
     restart: unless-stopped
 
   blog:
@@ -97,6 +135,12 @@ services:
     volumes:
       - blog-uploads:/app/uploads
     ports: ["8092:8092"]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.blog.rule=PathPrefix(`/api/blogs`) || PathPrefix(`/uploads`)"
+      - "traefik.http.routers.blog.entrypoints=web"
+      - "traefik.http.services.blog.loadbalancer.server.port=8092"
+      - "traefik.http.routers.blog.middlewares=cors@docker"
     restart: unless-stopped
 
   prometheus:
