@@ -136,11 +136,15 @@ services:
     ports: ["8092:8092"]
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=soa_default"
       - "traefik.http.routers.blog.rule=PathPrefix(`/api/blogs`) || PathPrefix(`/uploads`)"
       - "traefik.http.routers.blog.entrypoints=web"
       - "traefik.http.services.blog.loadbalancer.server.port=8092"
       - "traefik.http.routers.blog.middlewares=cors@docker"
     restart: unless-stopped
+    networks:
+      - default
+      - monitoring
     
 volumes:
   mongo-stakeholders:
@@ -148,3 +152,8 @@ volumes:
   mongo-purchase:
   mongo-blog:
   blog-uploads:
+
+networks:
+  monitoring:
+    external: true
+    name: monitoring
