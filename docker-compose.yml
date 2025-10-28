@@ -140,6 +140,10 @@ services:
       - "traefik.http.routers.blog.rule=PathPrefix(`/api/blogs`) || PathPrefix(`/uploads`)"
       - "traefik.http.routers.blog.entrypoints=web"
       - "traefik.http.services.blog.loadbalancer.server.port=8092"
+      - "traefik.http.services.blog.loadbalancer.server.scheme=http"
+      - "traefik.http.services.blog.loadbalancer.healthcheck.path=/actuator/health"
+      - "traefik.http.services.blog.loadbalancer.healthcheck.interval=5s"
+      - "traefik.http.services.blog.loadbalancer.healthcheck.timeout=2s"
       - "traefik.http.routers.blog.middlewares=cors@docker"
     restart: unless-stopped
     networks:

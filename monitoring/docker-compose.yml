@@ -36,10 +36,50 @@ services:
       - "9000:16686"
     networks:
       - monitoring
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    restart: on-failure
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus:/var/lib/prometheus
+    networks:
+      - monitoring
+
+  node-exporter:
+    image: quay.io/prometheus/node-exporter:v1.8.2
+    command:
+      - '--path.rootfs=/host'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    volumes:
+      - '/:/host:ro'
+    networks:
+      - monitoring
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    command:
+      - "--docker_only=true"
+      - "--store_container_labels=true"
+      - "--whitelisted_container_labels=com.docker.compose.service,com.docker.compose.project"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - "8085:8080"
+    networks:
+      - monitoring
+
 
 volumes:
   grafana:
     name: grafana
+  prometheus:
+    name: prometheus
 
 networks:
   monitoring:

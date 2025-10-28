@@ -1,0 +1,92 @@
+{
+  "uid": "node-overview",
+  "title": "Node Exporter - Overview",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": true,
+  "timezone": "",
+  "time": { "from": "now-1h", "to": "now" },
+  "refresh": "10s",
+  "tags": ["node_exporter", "infrastructure"],
+  "templating": {
+    "list": [
+      {
+        "type": "query",
+        "name": "instance",
+        "label": "Instance",
+        "hide": 0,
+        "datasource": { "type": "prometheus", "uid": "prom" },
+  "query": "label_values(up{job=\"node_exporter\"}, instance)",
+        "refresh": 1,
+        "includeAll": false,
+        "multi": false,
+        "current": {}
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "CPU usage (%)",
+      "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": { "defaults": { "unit": "percent", "min": 0, "max": 100 } },
+      "options": { "legend": { "displayMode": "list", "placement": "right" } },
+      "targets": [
+        {
+          "expr": "100 - avg by(instance)(rate(node_cpu_seconds_total{mode=\"idle\", instance=~\"$instance\"}[5m])) * 100",
+          "legendFormat": "CPU %",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Memory available (%)",
+      "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": { "defaults": { "unit": "percent", "min": 0, "max": 100 } },
+      "targets": [
+        {
+          "expr": "(node_memory_MemAvailable_bytes{instance=~\"$instance\"} / node_memory_MemTotal_bytes{instance=~\"$instance\"}) * 100",
+          "legendFormat": "Mem avail %",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Filesystem usage (%)",
+      "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": { "defaults": { "unit": "percent", "min": 0, "max": 100 } },
+      "targets": [
+        {
+          "expr": "100 - (sum by (instance) (node_filesystem_avail_bytes{fstype!~\"tmpfs|overlay\", instance=~\"$instance\"}) / sum by (instance) (node_filesystem_size_bytes{fstype!~\"tmpfs|overlay\", instance=~\"$instance\"})) * 100",
+          "legendFormat": "FS used %",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Network I/O (bytes/s)",
+      "gridPos": { "x": 12, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": { "defaults": { "unit": "Bps" } },
+      "options": { "legend": { "displayMode": "list", "placement": "right" } },
+      "targets": [
+        {
+          "expr": "sum by (instance) (rate(node_network_receive_bytes_total{device!~\"lo|veth.*\", instance=~\"$instance\"}[5m]))",
+          "legendFormat": "recv",
+          "refId": "A"
+        },
+        {
+          "expr": "sum by (instance) (rate(node_network_transmit_bytes_total{device!~\"lo|veth.*\", instance=~\"$instance\"}[5m]))",
+          "legendFormat": "trans",
+          "refId": "B"
+        }
+      ]
+    }
+  ]
+}

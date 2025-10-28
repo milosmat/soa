@@ -1,0 +1,99 @@
+{
+  "uid": "blogapi-overview",
+  "title": "BlogApi - Overview",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": true,
+  "time": { "from": "now-1h", "to": "now" },
+  "refresh": "10s",
+  "tags": ["blogapi", "application"],
+  "templating": {
+    "list": [
+      {
+        "type": "query",
+        "name": "uri",
+        "label": "Endpoint URI",
+        "datasource": { "type": "prometheus", "uid": "prom" },
+        "query": "label_values(http_server_requests_seconds_count{job=\"blogapi\", uri!=\"UNKNOWN\"}, uri)",
+        "refresh": 1,
+        "includeAll": true,
+        "allValue": ".*",
+        "multi": false,
+        "current": {"text":"All","value":"$__all"}
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "timeseries",
+  "title": "Requests/s ($uri)",
+      "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": { "defaults": { "unit": "req/s", "min": 0 } },
+      "targets": [
+        {
+          "expr": "sum by (uri) (rate(http_server_requests_seconds_count{job=\"blogapi\", uri=~\"$uri\"}[5m]))",
+          "legendFormat": "req/s",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Avg latency ($uri)",
+      "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": { "defaults": { "unit": "s", "min": 0 } },
+      "targets": [
+        {
+          "expr": "sum(rate(http_server_requests_seconds_sum{job=\"blogapi\", uri=~\"$uri\"}[5m])) / sum(rate(http_server_requests_seconds_count{job=\"blogapi\", uri=~\"$uri\"}[5m]))",
+          "legendFormat": "avg latency",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "HTTP requests/s by status",
+      "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": { "defaults": { "unit": "req/s", "min": 0 } },
+      "options": { "legend": { "displayMode": "list", "placement": "right" } },
+      "targets": [
+        {
+          "expr": "sum by (status) (rate(http_server_requests_seconds_count{job=\"blogapi\", uri!=\"UNKNOWN\"}[5m]))",
+          "legendFormat": "{{status}}",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "JVM heap used (%)",
+      "gridPos": { "x": 12, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": { "defaults": { "unit": "percent", "min": 0, "max": 100 } },
+      "targets": [
+        {
+          "expr": "(sum by (job) (jvm_memory_used_bytes{job=\"blogapi\", area=\"heap\"}) / sum by (job) (jvm_memory_max_bytes{job=\"blogapi\", area=\"heap\"})) * 100",
+          "legendFormat": "heap used %",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Process CPU usage (%)",
+      "gridPos": { "x": 0, "y": 16, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": { "defaults": { "unit": "percent", "min": 0, "max": 100 } },
+      "targets": [
+        {
+          "expr": "process_cpu_usage{job=\"blogapi\"} * 100",
+          "legendFormat": "process cpu %",
+          "refId": "A"
+        }
+      ]
+    }
+  ]
+}

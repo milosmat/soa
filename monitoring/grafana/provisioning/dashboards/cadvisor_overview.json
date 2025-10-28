@@ -1,0 +1,84 @@
+
+{
+  "uid": "cadvisor-overview",
+  "title": "cAdvisor - Containers Overview (Total)",
+  "schemaVersion": 39,
+  "version": 3,
+  "editable": true,
+  "time": { "from": "now-1h", "to": "now" },
+  "refresh": "10s",
+  "tags": ["cadvisor", "containers"],
+  "templating": { "list": [] },
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Total CPU Usage - All Containers (cores)",
+      "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": { "defaults": { "unit": "cores", "min": 0 } },
+      "options": { "legend": { "displayMode": "list", "placement": "right" } },
+      "targets": [
+        {
+          "expr": "sum(rate(container_cpu_usage_seconds_total{job=\"cAdvisor\", id=\"/\"}[1m]))",
+          "legendFormat": "Total CPU",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Total Memory Usage - All Containers (bytes)",
+      "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": { "defaults": { "unit": "bytes", "min": 0 } },
+      "options": { "legend": { "displayMode": "list", "placement": "right" } },
+      "targets": [
+        {
+          "expr": "container_memory_usage_bytes{job=\"cAdvisor\", id=\"/\"}",
+          "legendFormat": "Total Memory",
+          "refId": "A"
+        },
+        {
+          "expr": "container_memory_working_set_bytes{job=\"cAdvisor\", id=\"/\"}",
+          "legendFormat": "Working Set",
+          "refId": "B"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Total Network I/O - All Containers (bytes/s)",
+      "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": { "defaults": { "unit": "Bps" } },
+      "options": { "legend": { "displayMode": "list", "placement": "right" } },
+      "targets": [
+        {
+          "expr": "sum(rate(container_network_receive_bytes_total{job=\"cAdvisor\", id=\"/\"}[1m]))",
+          "legendFormat": "Received",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(rate(container_network_transmit_bytes_total{job=\"cAdvisor\", id=\"/\"}[1m]))",
+          "legendFormat": "Transmitted",
+          "refId": "B"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Total Filesystem Usage - All Containers (bytes)",
+      "gridPos": { "x": 12, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": { "defaults": { "unit": "bytes", "min": 0 } },
+      "options": { "legend": { "displayMode": "list", "placement": "right" } },
+      "targets": [
+        {
+          "expr": "sum(container_fs_usage_bytes{job=\"cAdvisor\", id=\"/\", device=~\"overlay.*\"})",
+          "legendFormat": "Total FS Usage",
+          "refId": "A"
+        }
+      ]
+    }
+  ]
+}

@@ -11,6 +11,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.server.resource.web.BearerTokenResolver;
+import org.springframework.security.oauth2.server.resource.web.DefaultBearerTokenResolver;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -32,12 +34,33 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                .requestMatchers("/actuator/prometheus").permitAll()
+                .requestMatchers("/actuator/health", "/actuator/health/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/blogs/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
                 .anyRequest().authenticated()
             )
-            .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
+            .oauth2ResourceServer(oauth2 -> oauth2
+                .bearerTokenResolver(skippingResolver())
+                .jwt(Customizer.withDefaults())
+            );
         return http.build();
+    }
+
+    // Skip Bearer token parsing for public GETs and actuator endpoints so Authorization header doesn't cause 401
+    private BearerTokenResolver skippingResolver() {
+        DefaultBearerTokenResolver defaultResolver = new DefaultBearerTokenResolver();
+        return request -> {
+            String uri = request.getRequestURI();
+            String method = request.getMethod();
+            boolean publicActuator = uri.startsWith("/actuator/health") || uri.equals("/actuator/prometheus");
+            boolean publicDocs = uri.startsWith("/v3/api-docs") || uri.startsWith("/swagger-ui");
+            boolean publicGet = "GET".equalsIgnoreCase(method) && (uri.startsWith("/api/blogs") || uri.startsWith("/uploads/"));
+            if (publicActuator || publicDocs || publicGet) {
+                return null; // don't attempt authentication
+            }
+            return defaultResolver.resolve(request);
+        };
     }
 
     @Bean
